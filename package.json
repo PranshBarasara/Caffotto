@@ -1,0 +1,12 @@
+{
+  "name": "caffotto",
+  "version": "1.0.0",
+  "description": "Caffotto Luxury Cafe Website",
+  "scripts": {
+    "dev": "npx http-server -p 8080",
+    "start": "npx http-server -p 8080"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

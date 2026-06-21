@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | CAFFOTTO</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="custom-cursor" id="custom-cursor"></div>
+  <div class="custom-cursor-dot" id="custom-cursor-dot"></div>
+  <canvas id="particle-canvas"></canvas>
+  <div class="ambient-light"></div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="luxury-header">
+    <div class="logo"><a href="index.html">CAFFOTTO<span>.</span></a></div>
+    <nav class="luxury-nav">
+      <ul>
+        <li><a href="index.html" data-t="nav-home">Home</a></li>
+        <li><a href="about.html" data-t="nav-about">Story</a></li>
+        <li><a href="menu.html" data-t="nav-menu">Menu</a></li>
+        <li><a href="experience.html" data-t="nav-exp">Rituals</a></li>
+        <li><a href="gallery.html" data-t="nav-gallery">Gallery</a></li>
+        <li><a href="reservation.html" data-t="nav-reserve">Reservations</a></li>
+        <li><a href="events.html" data-t="nav-events">Events</a></li>
+        <li><a href="contact.html" class="active-link" data-t="nav-contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle-btn" id="theme-toggle-btn"><i id="theme-icon" data-lucide="sun"></i></button>
+      <button class="reserve-nav-btn" onclick="window.location.href = 'reservation.html'" data-t="btn-reserve">Reserve Table</button>
+      <button class="menu-trigger"><i data-lucide="menu"></i></button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section id="contact-view" class="view-section active-view" style="display: block; opacity: 1;">
+      <div class="sec-title-container">
+        <span class="sec-subtitle" data-t="sec-contact-sub">Lounge Location</span>
+        <h2 class="sec-title" data-t="sec-contact-title">Connect With Us</h2>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Info column -->
+        <div class="contact-info-panel glass-panel">
+          <div class="contact-block">
+            <h3>Caffotto Rajkot</h3>
+            <p>Labh Enclave, Shop No. 2, 1st Floor,<br>Navjivan Society, Kishanpara, Rajkot, Gujarat - 360001<br>T: +91 99987 77059<br>E: caffotto.rajkot@gmail.com</p>
+          </div>
+
+          <div class="contact-block">
+            <h3>Lounge Hours</h3>
+            <p>Daily: 11:00 AM - 11:00 PM<br>Afternoon Tea Service: 3:00 PM - 5:00 PM</p>
+          </div>
+
+          <div class="contact-block">
+            <h3>Social Connections</h3>
+            <div class="social-links">
+              <a href="https://instagram.com" target="_blank"><i data-lucide="instagram"></i></a>
+              <a href="https://facebook.com" target="_blank"><i data-lucide="facebook"></i></a>
+              <a href="https://twitter.com" target="_blank"><i data-lucide="twitter"></i></a>
+              <a href="https://whatsapp.com" target="_blank"><i data-lucide="phone-call"></i></a>
+            </div>
+          </div>
+
+          <!-- Radar map overlay -->
+          <div class="map-embed-wrapper">
+            <div class="map-radar"></div>
+            <i class="map-pin" data-lucide="map-pin" style="width:40px; height:40px;"></i>
+            <span style="position:absolute; bottom: 1rem; font-size: 0.7rem; letter-spacing: 0.1em; color:var(--accent-gold);">RADAR: RAJKOT KISHANPARA</span>
+          </div>
+        </div>
+
+        <!-- Form column -->
+        <div class="contact-form-side glass-panel">
+          <h3 style="font-family:var(--font-serif); font-size:2.2rem; font-weight:300; margin-bottom: 2rem;">Send Inquiries</h3>
+          
+          <form id="luxury-contact-form" class="luxury-form" onsubmit="event.preventDefault(); alert('Thank you for contacting Caffotto. Our concierge manager will reply within 4 hours.'); this.reset();">
+            <div class="form-group">
+              <label for="contact-name">Name</label>
+              <input type="text" id="contact-name" placeholder="Lord / Lady Surname" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="contact-email">Email Address</label>
+              <input type="email" id="contact-email" placeholder="name@domain.com" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="contact-subject">Inquiry Subject</label>
+              <select id="contact-subject" required>
+                <option value="catering">Private Dining & Event Catering</option>
+                <option value="cupping">Custom Coffee Workshops</option>
+                <option value="feedback">General Hospitality Feedback</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="contact-msg">Your Message</label>
+              <textarea id="contact-msg" rows="5" placeholder="Share your specific request with us..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-premium filled full-width" style="grid-column: span 2;">
+              <span>Transmit Message</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FLOATING CTA BUTTONS -->
+  <button class="floating-reserve-btn" onclick="window.location.href = 'reservation.html'"><i data-lucide="calendar"></i></button>
+  <button class="chatbot-trigger-btn" id="chatbot-trigger-btn"><i data-lucide="message-square"></i></button>
+
+  <div class="chat-widget-panel glass-panel" id="chat-widget-panel">
+    <div class="chat-header">
+      <h4>Caffotto Concierge<span>Virtual Ambassador</span></h4>
+      <button class="chat-close-btn" id="chat-close-btn"><i data-lucide="x"></i></button>
+    </div>
+    <div class="chat-body" id="chat-body"></div>
+    <div class="chat-quick-hints">
+      <button class="chat-hint-btn" data-hint="recommend">Recommendations</button>
+      <button class="chat-hint-btn" data-hint="hours">Lounge Hours</button>
+      <button class="chat-hint-btn" data-hint="reserve">Reserve Seat</button>
+    </div>
+    <form class="chat-footer" id="chat-input-form">
+      <input type="text" id="chat-input-field" placeholder="Ask about our coffee selections..." autocomplete="off">
+      <button type="submit" class="chat-send-btn"><i data-lucide="send"></i></button>
+    </form>
+  </div>
+
+  >
+
+  <footer class="luxury-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h2>CAFFOTTO<span>.</span></h2>
+        <p>Premium European Coffee rituals, wood-fired stone oven gastroteque, and modern Michelin-style dining spaces.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="menu.html">Interactive Menu</a></li>
+          <li><a href="experience.html">Signature Rituals</a></li>
+          <li><a href="reservation.html">Table Reservation</a></li>
+          </ul>
+      </div>
+      <div class="footer-hours">
+        <h4>Kishanpara Lounge</h4>
+        <p>Labh Enclave, Shop No. 2, 1st Floor,<br>Navjivan Society, Kishanpara, Rajkot<br><br>Daily: 11:00 AM - 11:00 PM</p>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Hospitality Letters</h4>
+        <p>Subscribe to receive invitations to private tastings and Chef's Table specials.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Welcome to the Caffotto Guestlist.'); this.reset();">
+          <input type="email" placeholder="concierge@guest.com" required>
+          <button type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CAFFOTTO S.P.A. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/reservation.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

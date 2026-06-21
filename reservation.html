@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table Bookings | CAFFOTTO</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="custom-cursor" id="custom-cursor"></div>
+  <div class="custom-cursor-dot" id="custom-cursor-dot"></div>
+  <canvas id="particle-canvas"></canvas>
+  <div class="ambient-light"></div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="luxury-header">
+    <div class="logo"><a href="index.html">CAFFOTTO<span>.</span></a></div>
+    <nav class="luxury-nav">
+      <ul>
+        <li><a href="index.html" data-t="nav-home">Home</a></li>
+        <li><a href="about.html" data-t="nav-about">Story</a></li>
+        <li><a href="menu.html" data-t="nav-menu">Menu</a></li>
+        <li><a href="experience.html" data-t="nav-exp">Rituals</a></li>
+        <li><a href="gallery.html" data-t="nav-gallery">Gallery</a></li>
+        <li><a href="reservation.html" class="active-link" data-t="nav-reserve">Reservations</a></li>
+        <li><a href="events.html" data-t="nav-events">Events</a></li>
+        <li><a href="contact.html" data-t="nav-contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle-btn" id="theme-toggle-btn"><i id="theme-icon" data-lucide="sun"></i></button>
+      <button class="reserve-nav-btn" onclick="window.location.href = 'reservation.html'" data-t="btn-reserve">Reserve Table</button>
+      <button class="menu-trigger"><i data-lucide="menu"></i></button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section id="reservation-view" class="view-section active-view" style="display: block; opacity: 1;">
+      <div class="sec-title-container">
+        <span class="sec-subtitle" data-t="sec-reserve-sub">VIP Seating</span>
+        <h2 class="sec-title" data-t="sec-reserve-title">Book Your Invitation</h2>
+      </div>
+
+      <div class="reservation-layout">
+        <!-- Form Side -->
+        <div class="res-form-side glass-panel">
+          <h3>Request Seating</h3>
+          <form id="luxury-reservation-form" class="luxury-form">
+            <div class="form-group">
+              <label for="res-name">Full Name</label>
+              <input type="text" id="res-name" placeholder="Lord / Lady Surname" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="res-email">Email Address</label>
+              <input type="email" id="res-email" placeholder="name@domain.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="res-phone">Phone Number</label>
+              <input type="tel" id="res-phone" placeholder="+39 300 123 4567" required>
+            </div>
+
+            <div class="form-group">
+              <label for="res-guests">Guests count</label>
+              <select id="res-guests" required>
+                <option value="1">1 Guest</option>
+                <option value="2" selected>2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="6">6 Guests</option>
+                <option value="8">8 Guests (VIP Lounge)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="res-date">Select Date</label>
+              <input type="date" id="res-date" required>
+            </div>
+
+            <div class="form-group">
+              <label for="res-time">Preferred Slot</label>
+              <select id="res-time" required>
+                <option value="08:30">08:30 AM (Espresso Ritual)</option>
+                <option value="12:30">12:30 PM (Lunch Service)</option>
+                <option value="15:00">03:00 PM (Afternoon Tea)</option>
+                <option value="19:30">07:30 PM (Chef's Tasting)</option>
+                <option value="21:00">09:00 PM (Late Night Dining)</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="res-occasion">Special Occasion (Optional)</label>
+              <input type="text" id="res-occasion" placeholder="Anniversary, Birthday, Corporate Lounge...">
+            </div>
+
+            <div class="vip-selector">
+              <input type="checkbox" id="res-vip">
+              <label for="res-vip">
+                <strong>Request VIP Seating Tier</strong><br>
+                <span style="font-size:0.7rem; color:var(--text-beige); opacity: 0.8;">Unlocks Table 8, custom valet support, and personalized menu curation.</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn-premium filled full-width" style="grid-column: span 2;">
+              <span>Submit Invitation Request</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Table Selector Grid Side -->
+        <div class="res-visual-side">
+          <div class="map-layout-container glass-panel">
+            <div class="map-layout-header">
+              <h4>Interactive Floor Layout</h4>
+              <div class="legend">
+                <div class="legend-item"><span class="legend-color available"></span><span>Free</span></div>
+                <div class="legend-item"><span class="legend-color reserved"></span><span>Booked</span></div>
+                <div class="legend-item"><span class="legend-color selected"></span><span>Select</span></div>
+              </div>
+            </div>
+            
+            <p style="font-size:0.75rem; color:var(--text-beige); margin-bottom:1.5rem; line-height:1.4;">
+              Please tap on an active gold node to select your preferred table seat from the floor map below:
+            </p>
+
+            <div class="table-selector-grid" id="table-selector-grid">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+          
+          <div class="glass-panel" style="padding: 2rem;">
+            <h4 style="font-family:var(--font-serif); font-size:1.3rem; margin-bottom: 0.8rem; color:var(--accent-gold);">Private Event Bookings</h4>
+            <p style="font-size:0.8rem; color:var(--text-beige); line-height:1.6; margin-bottom: 1.5rem;">
+              Planning a product launch, business meeting, or an exclusive wedding gathering? Connect with our dedicated event organizers.
+            </p>
+            <button class="btn-premium" style="width:100%" onclick="window.location.href = 'events.html'">
+              <span>Explore Events Options</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FLOATING CTA BUTTONS -->
+  <button class="floating-reserve-btn" onclick="window.location.href = 'reservation.html'"><i data-lucide="calendar"></i></button>
+  <button class="chatbot-trigger-btn" id="chatbot-trigger-btn"><i data-lucide="message-square"></i></button>
+
+  <div class="chat-widget-panel glass-panel" id="chat-widget-panel">
+    <div class="chat-header">
+      <h4>Caffotto Concierge<span>Virtual Ambassador</span></h4>
+      <button class="chat-close-btn" id="chat-close-btn"><i data-lucide="x"></i></button>
+    </div>
+    <div class="chat-body" id="chat-body"></div>
+    <div class="chat-quick-hints">
+      <button class="chat-hint-btn" data-hint="recommend">Recommendations</button>
+      <button class="chat-hint-btn" data-hint="hours">Lounge Hours</button>
+      <button class="chat-hint-btn" data-hint="reserve">Reserve Seat</button>
+    </div>
+    <form class="chat-footer" id="chat-input-form">
+      <input type="text" id="chat-input-field" placeholder="Ask about our coffee selections..." autocomplete="off">
+      <button type="submit" class="chat-send-btn"><i data-lucide="send"></i></button>
+    </form>
+  </div>
+
+  >
+
+  <footer class="luxury-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h2>CAFFOTTO<span>.</span></h2>
+        <p>Premium European Coffee rituals, wood-fired stone oven gastroteque, and modern Michelin-style dining spaces.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="menu.html">Interactive Menu</a></li>
+          <li><a href="experience.html">Signature Rituals</a></li>
+          <li><a href="reservation.html">Table Reservation</a></li>
+          </ul>
+      </div>
+      <div class="footer-hours">
+        <h4>Kishanpara Lounge</h4>
+        <p>Labh Enclave, Shop No. 2, 1st Floor,<br>Navjivan Society, Kishanpara, Rajkot<br><br>Daily: 11:00 AM - 11:00 PM</p>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Hospitality Letters</h4>
+        <p>Subscribe to receive invitations to private tastings and Chef's Table specials.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Welcome to the Caffotto Guestlist.'); this.reset();">
+          <input type="email" placeholder="concierge@guest.com" required>
+          <button type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CAFFOTTO S.P.A. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/reservation.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

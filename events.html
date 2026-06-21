@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exquisite Events | CAFFOTTO</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="custom-cursor" id="custom-cursor"></div>
+  <div class="custom-cursor-dot" id="custom-cursor-dot"></div>
+  <canvas id="particle-canvas"></canvas>
+  <div class="ambient-light"></div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="luxury-header">
+    <div class="logo"><a href="index.html">CAFFOTTO<span>.</span></a></div>
+    <nav class="luxury-nav">
+      <ul>
+        <li><a href="index.html" data-t="nav-home">Home</a></li>
+        <li><a href="about.html" data-t="nav-about">Story</a></li>
+        <li><a href="menu.html" data-t="nav-menu">Menu</a></li>
+        <li><a href="experience.html" data-t="nav-exp">Rituals</a></li>
+        <li><a href="gallery.html" data-t="nav-gallery">Gallery</a></li>
+        <li><a href="reservation.html" data-t="nav-reserve">Reservations</a></li>
+        <li><a href="events.html" class="active-link" data-t="nav-events">Events</a></li>
+        <li><a href="contact.html" data-t="nav-contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle-btn" id="theme-toggle-btn"><i id="theme-icon" data-lucide="sun"></i></button>
+      <button class="reserve-nav-btn" onclick="window.location.href = 'reservation.html'" data-t="btn-reserve">Reserve Table</button>
+      <button class="menu-trigger"><i data-lucide="menu"></i></button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section id="events-view" class="view-section active-view" style="display: block; opacity: 1;">
+      <div class="sec-title-container">
+        <span class="sec-subtitle" data-t="sec-events-sub">Private Occasions</span>
+        <h2 class="sec-title" data-t="sec-events-title">Exquisite Gatherings</h2>
+      </div>
+
+      <div class="events-showcase">
+        <!-- Event Card 1 -->
+        <div class="event-card">
+          <img class="event-bg-img" src="images/ambience.png" alt="Corporate private lounge">
+          <div class="event-details">
+            <h3>Corporate Conferences</h3>
+            <p>Conduct boardroom meetings or high-level client presentations within our soundproof glass lounge, backed by premium espresso setups and catering services.</p>
+            <a href="contact.html" class="btn-premium"><span>Request Brochure</span></a>
+          </div>
+        </div>
+
+        <!-- Event Card 2 -->
+        <div class="event-card">
+          <img class="event-bg-img" src="images/about.png" alt="Coffee brewing workshop">
+          <div class="event-details">
+            <h3>Coffee Masters Workshops</h3>
+            <p>Host customized tasting sessions or sensory alignment workshops led by our award-winning lead baristas. Explore brewing science and micro-lots.</p>
+            <a href="contact.html" class="btn-premium"><span>Book Workshop</span></a>
+          </div>
+        </div>
+
+        <!-- Event Card 3 -->
+        <div class="event-card">
+          <img class="event-bg-img" src="images/dessert.png" alt="Private celebration table close up">
+          <div class="event-details">
+            <h3>Celebration Dinners</h3>
+            <p>Celebrate milestone achievements or wedding anniversaries under custom dim gold lighting, featuring a customized 7-course menu from our Head Chef.</p>
+            <a href="contact.html" class="btn-premium"><span>Plan Event</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FLOATING CTA BUTTONS -->
+  <button class="floating-reserve-btn" onclick="window.location.href = 'reservation.html'"><i data-lucide="calendar"></i></button>
+  <button class="chatbot-trigger-btn" id="chatbot-trigger-btn"><i data-lucide="message-square"></i></button>
+
+  <div class="chat-widget-panel glass-panel" id="chat-widget-panel">
+    <div class="chat-header">
+      <h4>Caffotto Concierge<span>Virtual Ambassador</span></h4>
+      <button class="chat-close-btn" id="chat-close-btn"><i data-lucide="x"></i></button>
+    </div>
+    <div class="chat-body" id="chat-body"></div>
+    <div class="chat-quick-hints">
+      <button class="chat-hint-btn" data-hint="recommend">Recommendations</button>
+      <button class="chat-hint-btn" data-hint="hours">Lounge Hours</button>
+      <button class="chat-hint-btn" data-hint="reserve">Reserve Seat</button>
+    </div>
+    <form class="chat-footer" id="chat-input-form">
+      <input type="text" id="chat-input-field" placeholder="Ask about our coffee selections..." autocomplete="off">
+      <button type="submit" class="chat-send-btn"><i data-lucide="send"></i></button>
+    </form>
+  </div>
+
+  >
+
+  <footer class="luxury-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h2>CAFFOTTO<span>.</span></h2>
+        <p>Premium European Coffee rituals, wood-fired stone oven gastroteque, and modern Michelin-style dining spaces.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="menu.html">Interactive Menu</a></li>
+          <li><a href="experience.html">Signature Rituals</a></li>
+          <li><a href="reservation.html">Table Reservation</a></li>
+          </ul>
+      </div>
+      <div class="footer-hours">
+        <h4>Kishanpara Lounge</h4>
+        <p>Labh Enclave, Shop No. 2, 1st Floor,<br>Navjivan Society, Kishanpara, Rajkot<br><br>Daily: 11:00 AM - 11:00 PM</p>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Hospitality Letters</h4>
+        <p>Subscribe to receive invitations to private tastings and Chef's Table specials.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Welcome to the Caffotto Guestlist.'); this.reset();">
+          <input type="email" placeholder="concierge@guest.com" required>
+          <button type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CAFFOTTO S.P.A. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/reservation.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

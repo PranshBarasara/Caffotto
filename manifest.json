@@ -1,0 +1,17 @@
+{
+  "name": "CAFFOTTO - Luxury Café & Gourmet Cuisine",
+  "short_name": "Caffotto",
+  "description": "More Than Coffee. A Luxury Experience.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0B0B0B",
+  "theme_color": "#D4AF37",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "images/hero.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
